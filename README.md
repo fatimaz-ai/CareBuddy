@@ -55,7 +55,7 @@ arrival.
 | Styling        | Tailwind CSS 4 (Matcha & Basic Plum theme)                    |
 | AI integration | Google Gemini API (`gemini-3.1-flash-lite`, structured JSON)  |
 | Persistence    | Browser `localStorage` (profiles + per-profile history)      |
-| Accessibility  | Web Speech Synthesis & Recognition APIs                       |
+| Accessibility  | Web Speech API (Text-to-Speech playback)                      |
 | SOS card       | HTML Canvas rendering → PNG download                          |
 
 No backend — everything runs in the browser.
