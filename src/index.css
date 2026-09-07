@@ -29,16 +29,19 @@
   --color-terracotta-bg: #f7e2d9;
 }
 
-/* Force light mode on every device — ignore OS dark-mode preference so the
-   Matcha green background is always used. */
+/* Force the light / Matcha theme on every device — no dark-mode overrides.
+   Literal hex values are the guaranteed fallback if the @theme vars don't
+   resolve; the vars keep it in sync with the design system. */
 :root {
   color-scheme: light;
 }
 
 html,
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background-color: #e8f0dc; /* Matcha green — app background */
+  background-color: var(--color-paper, #e8f0dc);
+  color: #3d104b; /* plum — default text */
+  color: var(--color-ink, #3d104b);
 }
 
 body {
