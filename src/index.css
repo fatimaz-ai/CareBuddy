@@ -29,29 +29,10 @@
   --color-terracotta-bg: #f7e2d9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-paper: #241129;
-    --color-surface: #2f1636;
-    --color-ink: #eaf2dc;
-    --color-ink-soft: #c9b4cf;
-    --color-ink-dark: #f5f1f7;
-    --color-line: rgb(234 242 220 / 0.14);
-
-    --color-clay: #b3d47a;
-    --color-clay-deep: #c8e096;
-    --color-clay-ink: #241129;
-
-    --color-moss: #7fbfa4;
-    --color-moss-bg: #223b32;
-
-    --color-ochre: #dcae4d;
-    --color-ochre-bg: #3a2e14;
-
-    --color-terracotta: #e2794f;
-    --color-terracotta-deep: #f2996c;
-    --color-terracotta-bg: #3a271e;
-  }
+/* Force light mode on every device — ignore OS dark-mode preference so the
+   Matcha green background is always used. */
+:root {
+  color-scheme: light;
 }
 
 html,
