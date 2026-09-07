@@ -36,8 +36,7 @@ arrival.
 - **Emergency SOS Card** — Generates a downloadable, lock-screen-ready SOS card
   (name, blood type, allergies, essential meds, emergency contact) in English
   and Urdu, plus clear "call 1122" prompts on any high-risk result.
-- **Bilingual Accessibility** — Roman Urdu, Urdu, and English throughout, with
-  Web Speech **voice input** for describing symptoms and **text-to-speech**
+- **Bilingual Accessibility** — Roman Urdu, Urdu, and English throughout, with **text-to-speech**
   playback of the triage note in both languages.
 - **Offline Health Directory** — Instant, no-network first-aid guidance for
   common conditions (heatstroke, chest pain, burns, and more).
