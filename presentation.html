@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CareBuddy — Pitch Deck</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Nastaliq+Urdu:wght@400;600;700&display=swap" rel="stylesheet" />
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'system-ui', 'sans-serif'],
+          urdu: ['"Noto Nastaliq Urdu"', 'serif'],
+        },
+        colors: {
+          brand: {
+            50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4', 300: '#5eead4',
+            400: '#2dd4bf', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e',
+            800: '#115e59', 900: '#134e4a',
+          },
+        },
+      },
+    },
+  };
+</script>
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; height: 100%; background: #0b0f14; }
+  body { font-family: 'Inter', system-ui, sans-serif; overflow: hidden; }
+
+  .deck { position: fixed; inset: 0; }
+  .slide {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column;
+    padding: clamp(1.5rem, 5vw, 5rem);
+    opacity: 0; transform: translateY(24px) scale(0.985);
+    transition: opacity .5s ease, transform .5s ease;
+    pointer-events: none;
+    overflow-y: auto;
+  }
+  .slide.active { opacity: 1; transform: none; pointer-events: auto; }
+  .slide.leaving { opacity: 0; transform: translateY(-24px) scale(0.985); }
+
+  .reveal > * { opacity: 0; transform: translateY(16px); }
+  .slide.active .reveal > * {
+    animation: rise .55s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .slide.active .reveal > *:nth-child(1) { animation-delay: .08s; }
+  .slide.active .reveal > *:nth-child(2) { animation-delay: .16s; }
+  .slide.active .reveal > *:nth-child(3) { animation-delay: .24s; }
+  .slide.active .reveal > *:nth-child(4) { animation-delay: .32s; }
+  .slide.active .reveal > *:nth-child(5) { animation-delay: .40s; }
+  .slide.active .reveal > *:nth-child(6) { animation-delay: .48s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  .grid-bg {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(20,184,166,.18), transparent 45%),
+      radial-gradient(circle at 85% 80%, rgba(13,148,136,.14), transparent 45%),
+      linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 46px 46px, 46px 46px;
+  }
+  .card { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.08); backdrop-filter: blur(6px); }
+  .card:hover { border-color: rgba(45,212,191,.35); background: rgba(45,212,191,.06); }
+
+  ::-webkit-scrollbar { width: 0; height: 0; }
+
+  @media print {
+    body { overflow: visible; }
+    .slide { position: relative; opacity: 1 !important; transform: none !important; page-break-after: always; min-height: 100vh; }
+    .no-print { display: none !important; }
+  }
+</style>
+</head>
+<body class="text-slate-100">
+
+<div class="deck grid-bg" id="deck">
+
+  <!-- SLIDE 1 — Problem & Vision -->
+  <section class="slide" data-title="Problem &amp; Vision">
+    <div class="reveal max-w-6xl mx-auto w-full my-auto">
+      <div class="flex items-center gap-3 text-brand-300 text-sm font-semibold tracking-widest uppercase">
+        <span class="h-px w-10 bg-brand-400"></span> CareBuddy · <span class="font-urdu text-lg">آسان صحت</span>
+      </div>
+      <h1 class="mt-6 text-4xl md:text-6xl font-black leading-[1.05] tracking-tight">
+        When every minute counts,<br />
+        <span class="text-brand-300">language shouldn't be the barrier.</span>
+      </h1>
+      <div class="mt-10 grid md:grid-cols-3 gap-4">
+        <div class="card rounded-2xl p-6 transition">
+          <div class="text-4xl font-black text-brand-300">~58%</div>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">adult literacy and low English fluency — millions can't read standard first-aid material or fill English medical forms.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <div class="text-4xl font-black text-brand-300">Delayed</div>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">in an emergency, callers can't convey urgency clearly — so triage and dispatch stall when seconds matter.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <div class="text-4xl font-black text-brand-300">Blind</div>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">first responders arrive with no blood group, allergies, or chronic-condition history for the patient in front of them.</p>
+        </div>
+      </div>
+      <div class="mt-8 rounded-2xl border border-brand-500/30 bg-brand-500/10 p-6">
+        <span class="text-brand-300 font-bold uppercase text-xs tracking-widest">Vision</span>
+        <p class="mt-2 text-lg text-slate-100 leading-relaxed">
+          A phone-first, bilingual companion that triages symptoms, speaks back in Urdu, and puts
+          life-saving patient data in a responder's hands in seconds — <strong class="text-brand-200">online or offline.</strong>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 2 — Core Architecture & Features -->
+  <section class="slide" data-title="Core Architecture &amp; Features">
+    <div class="reveal max-w-6xl mx-auto w-full my-auto">
+      <p class="text-brand-300 text-sm font-semibold tracking-widest uppercase">02 · Core Architecture &amp; Features</p>
+      <h2 class="mt-3 text-3xl md:text-5xl font-black tracking-tight">One profile, instant triage, one-tap dispatch</h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-4">
+        <div class="card rounded-2xl p-6 transition">
+          <div class="flex items-center gap-3">
+            <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-500/20 text-brand-300 text-xl">👤</span>
+            <h3 class="font-bold text-lg">Persistent patient profile</h3>
+          </div>
+          <p class="mt-3 text-slate-300 text-sm leading-relaxed">Name, age, blood group, allergies, medications, chronic conditions, and emergency contact. Multiple profiles per device for family use.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <div class="flex items-center gap-3">
+            <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-500/20 text-brand-300 text-xl">🩺</span>
+            <h3 class="font-bold text-lg">Gemini AI triage</h3>
+          </div>
+          <p class="mt-3 text-slate-300 text-sm leading-relaxed">Symptoms in Urdu / Roman Urdu / English → structured JSON: risk level, bilingual doctor's summary, 3 do's, 3 don'ts, safe OTC categories (suppressed for high-risk cases).</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <div class="flex items-center gap-3">
+            <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-500/20 text-brand-300 text-xl">🆘</span>
+            <h3 class="font-bold text-lg">Offline lockscreen SOS card</h3>
+          </div>
+          <p class="mt-3 text-slate-300 text-sm leading-relaxed">Canvas-rendered PNG with critical medical data + emergency contact, saved to the phone lockscreen for first-responder access.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <div class="flex items-center gap-3">
+            <span class="grid place-items-center h-10 w-10 rounded-xl bg-brand-500/20 text-brand-300 text-xl">📟</span>
+            <h3 class="font-bold text-lg">1122 dispatch payload</h3>
+          </div>
+          <p class="mt-3 text-slate-300 text-sm leading-relaxed">Pre-filled emergency SMS bundling the symptom summary and a Google Maps GPS link, opened straight into the native SMS app.</p>
+        </div>
+      </div>
+      <div class="mt-4 card rounded-2xl p-5 transition flex items-center gap-3">
+        <span class="text-xl">📍</span>
+        <p class="text-slate-300 text-sm"><strong class="text-slate-100">Nearby clinic locator</strong> and a <strong class="text-slate-100">common-conditions first-aid directory</strong>.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 3 — Technical Implementation -->
+  <section class="slide" data-title="Technical Implementation">
+    <div class="reveal max-w-6xl mx-auto w-full my-auto">
+      <p class="text-brand-300 text-sm font-semibold tracking-widest uppercase">03 · Technical Implementation</p>
+      <h2 class="mt-3 text-3xl md:text-5xl font-black tracking-tight">Lightweight React, context-aware AI, graceful offline fallback</h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-4">
+        <div class="card rounded-2xl p-6 transition">
+          <h3 class="font-bold text-brand-300">React state flow</h3>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed"><code class="text-brand-200">App</code> loads the active profile from LocalStorage on boot and routes between Profile / Triage / Directory; symptom selection lives in <code class="text-brand-200">TriagePage</code> and is composed into one summary string.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <h3 class="font-bold text-brand-300">Dynamic context injection</h3>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">Each Gemini call is built from the profile's baseline <em>plus</em> its last 5 triage outcomes — the model reasons over real history. Switching profile switches the medical context.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <h3 class="font-bold text-brand-300">Structured output</h3>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed"><code class="text-brand-200">responseSchema</code> + <code class="text-brand-200">responseMimeType: application/json</code> force a predictable triage object; <code class="text-brand-200">temperature 0.2</code> for consistency.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <h3 class="font-bold text-brand-300">Offline / failure fallback</h3>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">An <code class="text-brand-200">AbortController</code> timeout and a static <code class="text-brand-200">MOCK_TRIAGE_RESULT</code> mean a failed or slow API call never shows a broken state.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition">
+          <h3 class="font-bold text-brand-300">Persistence</h3>
+          <p class="mt-2 text-slate-300 text-sm leading-relaxed">Single LocalStorage key, legacy-key migration, capped history, try/catch around every read/write for private-mode safety.</p>
+        </div>
+        <div class="card rounded-2xl p-6 transition flex flex-col justify-center">
+          <h3 class="font-bold text-brand-300">Stack</h3>
+          <div class="mt-3 flex flex-wrap gap-2 text-xs font-semibold">
+            <span class="px-3 py-1 rounded-full bg-brand-500/15 text-brand-200 border border-brand-500/30">React 18</span>
+            <span class="px-3 py-1 rounded-full bg-brand-500/15 text-brand-200 border border-brand-500/30">Vite 5</span>
+            <span class="px-3 py-1 rounded-full bg-brand-500/15 text-brand-200 border border-brand-500/30">Tailwind CSS 4</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-slate-300 border border-white/10">Zero backend</span>
+            <span class="px-3 py-1 rounded-full bg-white/5 text-slate-300 border border-white/10">Static deploy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 4 — Accessibility & Impact -->
+  <section class="slide" data-title="Accessibility &amp; Impact">
+    <div class="reveal max-w-6xl mx-auto w-full my-auto">
+      <p class="text-brand-300 text-sm font-semibold tracking-widest uppercase">04 · Real-World Accessibility &amp; Impact</p>
+      <h2 class="mt-3 text-3xl md:text-5xl font-black tracking-tight">Built for the person who can't read the screen</h2>
+      <div class="mt-10 grid md:grid-cols-2 gap-4">
+        <ul class="space-y-4">
+          <li class="card rounded-2xl p-5 transition">
+            <div class="flex gap-3"><span class="text-xl">🔊</span><div>
+              <strong class="text-slate-100">Urdu voice UI</strong>
+              <p class="mt-1 text-slate-300 text-sm leading-relaxed">"Read Aloud in Urdu" speaks the triage summary via Google TTS with a <code class="text-brand-200">SpeechSynthesis</code> fallback; voice symptom entry via <code class="text-brand-200">SpeechRecognition</code> (<code class="text-brand-200">ur-PK</code>).</p>
+            </div></div>
+          </li>
+          <li class="card rounded-2xl p-5 transition">
+            <div class="flex gap-3"><span class="text-xl">👆</span><div>
+              <strong class="text-slate-100">Tap-first symptom input</strong>
+              <p class="mt-1 text-slate-300 text-sm leading-relaxed">An icon grid means no typing required to get a triage.</p>
+            </div></div>
+          </li>
+          <li class="card rounded-2xl p-5 transition">
+            <div class="flex gap-3"><span class="text-xl font-urdu">اُردو</span><div>
+              <strong class="text-slate-100">Every label bilingual</strong>
+              <p class="mt-1 text-slate-300 text-sm leading-relaxed">English and Urdu script side by side throughout the UI.</p>
+            </div></div>
+          </li>
+          <li class="card rounded-2xl p-5 transition">
+            <div class="flex gap-3"><span class="text-xl">🚑</span><div>
+              <strong class="text-slate-100">First-responder access</strong>
+              <p class="mt-1 text-slate-300 text-sm leading-relaxed">The lockscreen SOS card needs no app, no unlock, no internet — blood group and allergies readable in the first 5 seconds on scene.</p>
+            </div></div>
+          </li>
+        </ul>
+        <div class="rounded-2xl border border-brand-500/30 bg-gradient-to-br from-brand-500/15 to-brand-700/10 p-8 flex flex-col justify-center">
+          <span class="text-brand-300 font-bold uppercase text-xs tracking-widest">Impact</span>
+          <ul class="mt-4 space-y-4 text-slate-100">
+            <li class="flex gap-3"><span class="text-brand-300 font-black">→</span> Faster, better-informed dispatch.</li>
+            <li class="flex gap-3"><span class="text-brand-300 font-black">→</span> Fewer medication / allergy errors during first aid.</li>
+            <li class="flex gap-3"><span class="text-brand-300 font-black">→</span> Health guidance that reaches low-literacy users standard apps exclude.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLIDE 5 — Roadmap -->
+  <section class="slide" data-title="Roadmap &amp; Future Scale">
+    <div class="reveal max-w-6xl mx-auto w-full my-auto">
+      <p class="text-brand-300 text-sm font-semibold tracking-widest uppercase">05 · Roadmap &amp; Future Scale</p>
+      <h2 class="mt-3 text-3xl md:text-5xl font-black tracking-tight">From a device-local demo to national infrastructure</h2>
+      <div class="mt-10 relative pl-6 border-l border-brand-500/40 space-y-5">
+        <div class="relative card rounded-2xl p-5 transition">
+          <span class="absolute -left-[31px] top-6 h-3 w-3 rounded-full bg-brand-400 ring-4 ring-brand-500/20"></span>
+          <h3 class="font-bold text-brand-300">Cloud sync</h3>
+          <p class="mt-1 text-slate-300 text-sm leading-relaxed">Optional account-based backup so a profile follows the patient across devices and survives a lost or destroyed phone.</p>
+        </div>
+        <div class="relative card rounded-2xl p-5 transition">
+          <span class="absolute -left-[31px] top-6 h-3 w-3 rounded-full bg-brand-400 ring-4 ring-brand-500/20"></span>
+          <h3 class="font-bold text-brand-300">Backend API proxy</h3>
+          <p class="mt-1 text-slate-300 text-sm leading-relaxed">Move the Gemini key server-side; add rate limiting, logging, and a fine-tuned triage model validated against Pakistani epidemiology (dengue, heatstroke, snakebite).</p>
+        </div>
+        <div class="relative card rounded-2xl p-5 transition">
+          <span class="absolute -left-[31px] top-6 h-3 w-3 rounded-full bg-brand-400 ring-4 ring-brand-500/20"></span>
+          <h3 class="font-bold text-brand-300">Hospital &amp; 1122 APIs</h3>
+          <p class="mt-1 text-slate-300 text-sm leading-relaxed">Real dispatch integration — push the structured triage packet directly into responder systems and pre-notify the receiving ER.</p>
+        </div>
+        <div class="relative card rounded-2xl p-5 transition">
+          <span class="absolute -left-[31px] top-6 h-3 w-3 rounded-full bg-brand-400 ring-4 ring-brand-500/20"></span>
+          <h3 class="font-bold text-brand-300">Offline PWA + SMS-only mode</h3>
+          <p class="mt-1 text-slate-300 text-sm leading-relaxed">Full service-worker install and a USSD/SMS fallback for feature phones and no-data areas.</p>
+        </div>
+        <div class="relative card rounded-2xl p-5 transition">
+          <span class="absolute -left-[31px] top-6 h-3 w-3 rounded-full bg-brand-400 ring-4 ring-brand-500/20"></span>
+          <h3 class="font-bold text-brand-300">Provincial partnerships</h3>
+          <p class="mt-1 text-slate-300 text-sm leading-relaxed">Health-department distribution, local-language expansion (Pashto, Sindhi, Punjabi, Balochi), and CHW dashboards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Chrome -->
+<div class="no-print">
+  <!-- top progress -->
+  <div class="fixed top-0 left-0 right-0 h-1 bg-white/5 z-40">
+    <div id="progress" class="h-full bg-brand-400 transition-all duration-500" style="width:20%"></div>
+  </div>
+
+  <!-- brand mark -->
+  <div class="fixed top-5 left-6 z-40 flex items-center gap-2 text-sm font-bold tracking-tight">
+    <span class="grid place-items-center h-7 w-7 rounded-lg bg-brand-500 text-white">✚</span>
+    CareBuddy
+  </div>
+
+  <!-- controls -->
+  <div class="fixed bottom-5 left-1/2 -translate-x-1/2 z-40 flex items-center gap-4 rounded-full bg-black/40 border border-white/10 backdrop-blur px-4 py-2">
+    <button id="prev" class="h-8 w-8 grid place-items-center rounded-full hover:bg-white/10 transition text-lg" aria-label="Previous slide">‹</button>
+    <div id="dots" class="flex items-center gap-2"></div>
+    <button id="next" class="h-8 w-8 grid place-items-center rounded-full hover:bg-white/10 transition text-lg" aria-label="Next slide">›</button>
+    <span class="mx-1 h-4 w-px bg-white/15"></span>
+    <span id="counter" class="text-xs font-semibold tabular-nums text-slate-300">01 / 05</span>
+    <button id="fs" class="h-8 w-8 grid place-items-center rounded-full hover:bg-white/10 transition" aria-label="Toggle fullscreen">⛶</button>
+  </div>
+
+  <div class="fixed bottom-5 right-6 z-40 text-[11px] text-slate-500">← → / Space · F fullscreen</div>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const dotsWrap = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  let i = 0;
+
+  slides.forEach((s, idx) => {
+    const d = document.createElement('button');
+    d.className = 'h-2 w-2 rounded-full bg-white/25 transition-all';
+    d.setAttribute('aria-label', 'Go to slide ' + (idx + 1) + ': ' + s.dataset.title);
+    d.addEventListener('click', () => go(idx));
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function go(n) {
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    if (n === i) { render(); return; }
+    const prev = slides[i];
+    prev.classList.add('leaving');
+    prev.classList.remove('active');
+    setTimeout(() => prev.classList.remove('leaving'), 500);
+    i = n;
+    render();
+  }
+  function render() {
+    slides[i].classList.add('active');
+    const pad = (x) => String(x).padStart(2, '0');
+    counter.textContent = pad(i + 1) + ' / ' + pad(slides.length);
+    progress.style.width = ((i + 1) / slides.length * 100) + '%';
+    dots.forEach((d, idx) => {
+      d.classList.toggle('bg-brand-400', idx === i);
+      d.classList.toggle('w-5', idx === i);
+      d.classList.toggle('bg-white/25', idx !== i);
+    });
+  }
+
+  document.getElementById('next').addEventListener('click', () => go(i + 1));
+  document.getElementById('prev').addEventListener('click', () => go(i - 1));
+  document.getElementById('fs').addEventListener('click', toggleFs);
+
+  function toggleFs() {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(i + 1); }
+    else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(i - 1); }
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(slides.length - 1);
+    else if (e.key.toLowerCase() === 'f') toggleFs();
+  });
+
+  // click left / right third of screen to navigate (ignore clicks on interactive chrome)
+  document.getElementById('deck').addEventListener('click', (e) => {
+    if (e.target.closest('button, a, code')) return;
+    const x = e.clientX / window.innerWidth;
+    if (x > 0.66) go(i + 1);
+    else if (x < 0.34) go(i - 1);
+  });
+
+  // swipe
+  let sx = 0;
+  addEventListener('touchstart', (e) => sx = e.touches[0].clientX, { passive: true });
+  addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - sx;
+    if (Math.abs(dx) > 60) go(i + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  // deep link via hash (#3)
+  const start = parseInt(location.hash.slice(1), 10);
+  if (!isNaN(start)) i = Math.max(0, Math.min(slides.length - 1, start - 1));
+  render();
+</script>
+</body>
+</html>
