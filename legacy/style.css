@@ -1,0 +1,483 @@
+/* ===== CareBuddy / آسان صحت — Modern Care Theme ===== */
+
+:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-alt: #eef2f8;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #64748b;
+
+  --primary: #0d9488;
+  --primary-dark: #0f766e;
+  --primary-light: #ccfbf1;
+
+  --danger: #dc2626;
+  --danger-dark: #b91c1c;
+  --danger-light: #fee2e2;
+
+  --success: #16a34a;
+  --success-dark: #15803d;
+  --success-light: #ecfdf3;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, 0.10), 0 2px 6px rgba(15, 23, 42, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f1115;
+    --surface: #171a21;
+    --surface-alt: #1e222b;
+    --border: #2a2f3a;
+    --text: #e8eaed;
+    --text-muted: #98a1b0;
+
+    --primary: #2dd4bf;
+    --primary-dark: #14b8a6;
+    --primary-light: #123a37;
+
+    --danger: #f87171;
+    --danger-dark: #ef4444;
+    --danger-light: #3b1414;
+
+    --success: #4ade80;
+    --success-dark: #22c55e;
+    --success-light: #123b21;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.urdu {
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-family: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", Tahoma, Arial, sans-serif;
+  line-height: 2;
+}
+
+a {
+  color: var(--primary-dark);
+}
+
+/* ---- Header ---- */
+.site-header {
+  background: var(--surface);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .site-header {
+    background: color-mix(in srgb, var(--surface) 92%, transparent);
+  }
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  font-size: 1.35rem;
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+}
+
+.offline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--success-light);
+  color: var(--success-dark);
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid color-mix(in srgb, var(--success) 35%, transparent);
+}
+
+.offline-badge .dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+/* ---- Disclaimer banner ---- */
+.disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Card ---- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface-alt);
+}
+
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius-sm);
+  background: var(--primary-light);
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.card-header-text .card-title {
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.card-header-text .card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-body p.card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+
+/* ---- Form controls ---- */
+.field-label {
+  color: var(--text);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.9rem;
+}
+
+.field-input {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 0.7rem 0.9rem;
+  font-family: inherit;
+  font-size: 1rem;
+  min-height: 46px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+.field-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 46px;
+  padding: 0.7rem 1.25rem;
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-family: inherit;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.08s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.btn-outline {
+  background: var(--surface);
+  color: var(--text);
+  border-color: var(--border);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.btn-outline[aria-selected="true"] {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* ---- Symptom toggle grid ---- */
+.symptom-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 120px;
+  padding: 1rem 0.5rem;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.1s ease;
+}
+
+.symptom-btn:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+
+.symptom-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  background: var(--primary-light);
+  color: var(--primary-dark);
+  flex-shrink: 0;
+}
+
+.symptom-icon-badge svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.symptom-btn[aria-pressed="true"] {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--text);
+}
+
+.symptom-btn[aria-pressed="true"] .symptom-icon-badge {
+  background: var(--primary);
+  color: #fff;
+}
+
+/* ---- Emergency SMS / 1122 card ---- */
+.emergency-card {
+  border-color: color-mix(in srgb, var(--danger) 45%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--danger) 18%, transparent), var(--shadow-md);
+}
+
+.emergency-card-header {
+  background: linear-gradient(135deg, var(--danger-light), var(--surface-alt));
+}
+
+.emergency-icon {
+  background: var(--danger-light);
+  color: var(--danger-dark);
+}
+
+.btn-emergency {
+  background: linear-gradient(135deg, var(--danger), var(--danger-dark));
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+  font-size: 1.02rem;
+  padding: 0.9rem 1.5rem;
+}
+
+.btn-emergency:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ---- Collapsible checklist (bottom, full-width) ---- */
+.checklist-card {
+  display: block;
+}
+
+.checklist-summary {
+  cursor: pointer;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.checklist-summary::-webkit-details-marker {
+  display: none;
+}
+
+.checklist-summary .card-header-text {
+  flex: 1;
+}
+
+.checklist-chevron {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.checklist-card[open] .checklist-chevron {
+  transform: rotate(180deg);
+}
+
+/* ---- Checklist do/dont blocks ---- */
+.do-block,
+.dont-block {
+  border-radius: var(--radius-md);
+  padding: 1.1rem;
+  border: 1.5px solid transparent;
+}
+
+.do-block {
+  background: var(--success-light);
+  border-color: color-mix(in srgb, var(--success) 35%, transparent);
+}
+
+.dont-block {
+  background: var(--danger-light);
+  border-color: color-mix(in srgb, var(--danger) 35%, transparent);
+}
+
+.do-block h3 {
+  color: var(--success-dark);
+}
+
+.dont-block h3 {
+  color: var(--danger-dark);
+}
+
+.do-block ul li,
+.dont-block ul li {
+  margin-bottom: 0.6rem;
+  font-weight: 500;
+  font-size: 0.92rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ---- Output terminal-style summary box ---- */
+.terminal-output {
+  background: var(--surface-alt);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 0.9rem 1rem;
+  min-height: 3rem;
+  font-size: 0.92rem;
+  word-break: break-word;
+}
+
+/* ---- AI Triage ---- */
+.triage-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 1.5px solid transparent;
+}
+
+.triage-high {
+  background: var(--danger-light);
+  color: var(--danger-dark);
+  border-color: color-mix(in srgb, var(--danger) 35%, transparent);
+}
+
+.triage-moderate {
+  background: #fef3c7;
+  color: #b45309;
+  border-color: color-mix(in srgb, #f59e0b 35%, transparent);
+}
+
+@media (prefers-color-scheme: dark) {
+  .triage-moderate {
+    background: #3b2f12;
+    color: #fbbf24;
+  }
+}
+
+.triage-low {
+  background: var(--success-light);
+  color: var(--success-dark);
+  border-color: color-mix(in srgb, var(--success) 35%, transparent);
+}
+
+#symptom-mic-btn.listening {
+  background: var(--danger-light);
+  border-color: var(--danger);
+  color: var(--danger-dark);
+}
+
+/* ---- Footer ---- */
+.site-footer {
+  border-top: 1px solid var(--border);
+}

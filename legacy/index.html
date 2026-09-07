@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#0d9488" />
+<title>CareBuddy | آسان صحت</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body class="min-h-screen">
+
+<!-- Sticky Nav -->
+<header class="site-header sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+    <div class="flex items-center gap-3">
+      <span class="brand-mark" aria-hidden="true">➕</span>
+      <div>
+        <h1 class="text-lg md:text-xl font-extrabold leading-tight">
+          CareBuddy <span class="urdu">| آسان صحت</span>
+        </h1>
+        <p class="hidden md:block text-xs text-[var(--text-muted)] font-medium">Offline Health Companion</p>
+      </div>
+    </div>
+    <span class="offline-badge">
+      <span class="dot" aria-hidden="true"></span>
+      Works Offline
+    </span>
+  </div>
+</header>
+
+<main class="max-w-6xl mx-auto px-4 py-8">
+  <div class="disclaimer mb-8 max-w-3xl mx-auto">
+    <span aria-hidden="true">⚠️</span>
+    <p class="text-sm text-[var(--text-muted)]">
+      Demo advisory content only — not a substitute for professional medical care.
+      <span class="urdu block mt-1">یہ صرف رہنمائی کے لیے ہے، طبی ماہر سے رجوع کریں</span>
+    </p>
+  </div>
+
+  <div class="stack flex flex-col gap-6">
+
+    <!-- Feature 1: Emergency SOS Card -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">🆔</span>
+        <div class="card-header-text">
+          <h2 class="card-title">Emergency SOS Card <span class="urdu">آئی ڈی کارڈ</span></h2>
+          <p class="card-subtitle">Fill in your details and download a lockscreen card for first responders.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <form id="sos-form" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="field-label" for="sos-name">Full Name <span class="urdu">نام</span></label>
+            <input class="field-input" id="sos-name" name="name" type="text" placeholder="e.g. Ahmed Khan" required />
+          </div>
+          <div>
+            <label class="field-label" for="sos-blood">Blood Type <span class="urdu">بلڈ گروپ</span></label>
+            <input class="field-input" id="sos-blood" name="blood" type="text" placeholder="e.g. B+" required />
+          </div>
+          <div>
+            <label class="field-label" for="sos-allergies">Chronic Allergies <span class="urdu">الرجی</span></label>
+            <input class="field-input" id="sos-allergies" name="allergies" type="text" placeholder="e.g. Penicillin" />
+          </div>
+          <div>
+            <label class="field-label" for="sos-contact">Emergency Mobile Contact <span class="urdu">ایمرجنسی نمبر</span></label>
+            <input class="field-input" id="sos-contact" name="contact" type="tel" placeholder="e.g. 0300-1234567" required />
+          </div>
+          <div class="md:col-span-2">
+            <label class="field-label" for="sos-meds">Essential Meds <span class="urdu">روزمرہ کی ادویات</span></label>
+            <input class="field-input" id="sos-meds" name="meds" type="text" placeholder="e.g. Insulin, Aspirin" />
+          </div>
+        </form>
+
+        <div class="mt-5 flex flex-col md:flex-row items-start md:items-center gap-4">
+          <button id="sos-download-btn" type="button" class="btn btn-primary">
+            ⬇ Download Lockscreen Card <span class="urdu">کارڈ ڈاؤن لوڈ کریں</span>
+          </button>
+          <canvas id="sos-canvas" width="1080" height="1920" class="hidden"></canvas>
+          <img id="sos-preview" class="hidden rounded-[var(--radius-md)] border border-[var(--border)] shadow-[var(--shadow-md)] max-w-[160px]" alt="SOS card preview" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature 2: Visual Symptom Communicator -->
+    <section class="card">
+      <div class="card-header">
+        <span class="card-icon" aria-hidden="true">🗣️</span>
+        <div class="card-header-text">
+          <h2 class="card-title">Symptom Communicator <span class="urdu">علامات کی تفصیل</span></h2>
+          <p class="card-subtitle">Tap what you're feeling, or type/speak more detail below.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <div id="symptom-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-5" role="group" aria-label="Symptom selector"></div>
+
+        <label class="field-label" for="symptom-custom">Describe more — Roman Urdu / Urdu / English <span class="urdu">مزید تفصیل لکھیں یا بولیں</span></label>
+        <div class="flex gap-2 items-start">
+          <textarea id="symptom-custom" class="field-input" rows="2" placeholder="e.g. Mujhe 2 din se bukhar hai aur sar dard bhi hai..."></textarea>
+          <button id="symptom-mic-btn" type="button" class="btn btn-outline" title="Speak your symptoms" aria-label="Speak symptoms">🎤</button>
+        </div>
+
+        <div class="flex flex-wrap gap-3 mt-4">
+          <button id="symptom-copy-btn" type="button" class="btn btn-outline">
+            📋 Copy Summary <span class="urdu">کاپی کریں</span>
+          </button>
+          <button id="ai-triage-btn" type="button" class="btn btn-primary">
+            ✨ AI Triage &amp; Doctor Note (Gemini)
+          </button>
+        </div>
+
+        <label class="field-label mt-4" for="symptom-output">Summary</label>
+        <div id="symptom-output" class="terminal-output" role="status">No symptoms selected.</div>
+
+        <div id="ai-triage-result" class="hidden mt-5"></div>
+      </div>
+    </section>
+
+    <!-- Feature: 1122 One-Tap Emergency SMS Broadcaster -->
+    <section class="card emergency-card">
+      <div class="card-header emergency-card-header">
+        <span class="card-icon emergency-icon" aria-hidden="true">🚨</span>
+        <div class="card-header-text">
+          <h2 class="card-title">Emergency SMS / 1122 <span class="urdu">ایس ایم ایس</span></h2>
+          <p class="card-subtitle">One tap texts your symptoms and live GPS location straight to 1122 rescue.</p>
+        </div>
+      </div>
+      <div class="card-body">
+        <label class="field-label" for="sms-preview">Message that will be sent <span class="urdu">بھیجا جانے والا پیغام</span></label>
+        <div id="sms-preview" class="terminal-output mb-5" role="status">No symptoms selected yet — you can still send your location.</div>
+
+        <button id="sms-send-btn" type="button" class="btn btn-emergency w-full md:w-auto">
+          📍 Send Emergency SMS with Location <span class="urdu">لوکیشن کے ساتھ ایس ایم ایس بھیجیں</span>
+        </button>
+        <p id="sms-status" class="text-sm text-[var(--text-muted)] mt-3" aria-live="polite"></p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Feature 3: Offline Emergency Checklist — full-width, collapsible, always at the bottom -->
+  <details class="card checklist-card mt-6">
+    <summary class="card-header checklist-summary">
+      <span class="card-icon" aria-hidden="true">📋</span>
+      <div class="card-header-text">
+        <h2 class="card-title">Home Emergency Checklist <span class="urdu">ہنگامی گائیڈ</span></h2>
+        <p class="card-subtitle">Tap to expand — select a condition for immediate DO / DON'T guidance.</p>
+      </div>
+      <svg class="checklist-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </summary>
+    <div class="card-body">
+      <div id="checklist-tabs" class="flex flex-wrap gap-2 mb-4" role="tablist" aria-label="Emergency condition"></div>
+      <div id="checklist-panels"></div>
+    </div>
+  </details>
+</main>
+
+<footer class="site-footer text-center text-xs text-[var(--text-muted)] py-8">
+  CareBuddy — works fully offline after the first page load (except Tailwind CDN &amp; Urdu font fetch).
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

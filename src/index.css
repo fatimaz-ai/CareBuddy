@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", "Georgia", serif;
+  --font-sans: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "Consolas", monospace;
+  --font-urdu: "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", Tahoma, sans-serif;
+
+  /* Matcha & Plum design system */
+  --color-paper: #e8f0dc; /* soft tea/matcha light green — app background */
+  --color-surface: #ffffff; /* crisp pure white — card/container background */
+  --color-ink: #3d104b; /* basic plum — headings */
+  --color-ink-soft: #6b4a74; /* muted plum-grey — secondary text */
+  --color-ink-dark: #210829; /* near-black plum — high-contrast body/input text */
+  --color-line: rgb(61 16 75 / 0.18);
+
+  --color-clay: #3d104b; /* rich plum — primary accent / buttons / active cards */
+  --color-clay-deep: #58355e; /* plum hover/active */
+  --color-clay-ink: #b3d47a; /* matcha green — text/icons on plum buttons */
+
+  --color-moss: #3f7a68; /* low risk — viridian/green */
+  --color-moss-bg: #e3efe9;
+
+  --color-ochre: #b8802a; /* moderate risk — amber */
+  --color-ochre-bg: #faf0da;
+
+  --color-terracotta: #c1502e; /* high risk / urgent alerts */
+  --color-terracotta-deep: #9c3d22;
+  --color-terracotta-bg: #f7e2d9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-paper: #241129;
+    --color-surface: #2f1636;
+    --color-ink: #eaf2dc;
+    --color-ink-soft: #c9b4cf;
+    --color-ink-dark: #f5f1f7;
+    --color-line: rgb(234 242 220 / 0.14);
+
+    --color-clay: #b3d47a;
+    --color-clay-deep: #c8e096;
+    --color-clay-ink: #241129;
+
+    --color-moss: #7fbfa4;
+    --color-moss-bg: #223b32;
+
+    --color-ochre: #dcae4d;
+    --color-ochre-bg: #3a2e14;
+
+    --color-terracotta: #e2794f;
+    --color-terracotta-deep: #f2996c;
+    --color-terracotta-bg: #3a271e;
+  }
+}
+
+html,
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.urdu {
+  direction: rtl;
+  unicode-bidi: isolate;
+  font-family: var(--font-urdu);
+  line-height: 2.1;
+  text-transform: none;
+  letter-spacing: normal;
+  font-style: normal;
+}
+
+@supports (font-variation-settings: normal) {
+  .font-display {
+    font-optical-sizing: auto;
+  }
+}
