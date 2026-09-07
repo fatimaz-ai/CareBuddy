@@ -1,11 +1,11 @@
 /*
- * WARNING: this key lives in client-side code that ships to every visitor's
- * browser, so anyone can read it from view-source or devtools and reuse it.
- * Fine for a local demo; for a real deployment proxy this call through a
- * backend that holds the key server-side.
+ * The key is read from VITE_GEMINI_API_KEY at build time (see .env.example).
+ * Note: Vite inlines VITE_* vars into the client bundle, so the key still
+ * ships to every visitor's browser — fine for a local demo, but for a real
+ * deployment proxy this call through a backend that holds the key server-side.
  */
 const GEMINI_CONFIG = {
-  apiKey: "AQ.Ab8RN6LdhgVRJVba7fphK3k2g5ItfeB1JGyIOGotMsCSZaO_Rw",
+  apiKey: import.meta.env.VITE_GEMINI_API_KEY ?? "",
   // gemini-3.6-flash is a "thinking" model that reliably took 25-35s to
   // respond (even to a trivial prompt), which blew the request timeout
   // below and caused every call to silently fall back to MOCK_TRIAGE_RESULT.
@@ -100,6 +100,9 @@ const TRIAGE_RESPONSE_SCHEMA = {
 };
 
 export async function fetchAiTriage(symptomText, context) {
+  if (!GEMINI_CONFIG.apiKey) {
+    throw new Error("VITE_GEMINI_API_KEY is not set — falling back to the offline triage response");
+  }
   const url = `${GEMINI_CONFIG.endpoint}?key=${GEMINI_CONFIG.apiKey}`;
   const body = {
     contents: [{ parts: [{ text: buildTriagePrompt(symptomText, context) }] }],
